@@ -22,39 +22,36 @@ public class CustomRegistrationController {
 	@Autowired
 	CustomerRegistrationService service;
 
-	@RequestMapping(value="/GetCustomersBy{userId}", method=RequestMethod.GET)
-	public ResponseEntity<CustomerRegistrationInfo> GetByUserId(@PathVariable Integer userId) throws IdNotFoundException{
+	@RequestMapping(value="/get-customer/{userId}", method=RequestMethod.GET)
+	public ResponseEntity<CustomerRegistrationInfo> GetByUserId(@PathVariable Integer userId)
+			throws IdNotFoundException{
 		CustomerRegistrationInfo customerinfo=service.getByuserId(userId);
 		if(customerinfo==null)
 			throw new IdNotFoundException("Customer not found with the given Id::" +userId);
-		return ResponseEntity.status(HttpStatus.OK).body(customerinfo);
-			
-		
+		return ResponseEntity.status(HttpStatus.OK).body(customerinfo);		
 	}
-	@RequestMapping(value="/GetCustomersBy/{aadharNumber}", method=RequestMethod.GET)
-	public ResponseEntity<CustomerRegistrationInfo> GetByAadharNumber(@PathVariable Long aadharNumber) throws AadharNotFoundException{
+	
+	@RequestMapping(value="/get-customerby-uidai/{aadharNumber}", method=RequestMethod.GET)
+	public ResponseEntity<CustomerRegistrationInfo> GetByAadharNumber(@PathVariable Long aadharNumber)
+			throws AadharNotFoundException{
 		
 		CustomerRegistrationInfo customerinfo=service.getByAadharNumber(aadharNumber);
 		if(customerinfo==null)
 			throw new AadharNotFoundException("Customer not found with Aadhar Number::" +aadharNumber);
-		return ResponseEntity.status(HttpStatus.OK).body(customerinfo);
-		
-		
+		return ResponseEntity.status(HttpStatus.OK).body(customerinfo);		
 	}
-	@RequestMapping(value="/CreateCustomer", method=RequestMethod.POST)
+	
+	@RequestMapping(value="/create-customer", method=RequestMethod.POST)
 	public ResponseEntity<CustomerRegistrationInfo> CreateCustomerInfo
 	(@RequestBody CustomerRegistrationInfo customerregistartioninfo){
 		CustomerRegistrationInfo customerinfo=service.CreateCustomerInfo(customerregistartioninfo);
-		return ResponseEntity.status(HttpStatus.CREATED).body(customerinfo);
-		
-	}
-	@RequestMapping(value="/GetAllCustomersInfo", method=RequestMethod.GET)
-	public ResponseEntity<List<CustomerRegistrationInfo>> GetAllCutomers(){
-		List<CustomerRegistrationInfo> customerinfo=service.GetAllCustomers();
-				return ResponseEntity.status(HttpStatus.OK).body(customerinfo);
-			
-		
+		return ResponseEntity.status(HttpStatus.CREATED).body(customerinfo);		
 	}
 	
+	@RequestMapping(value="/get-all-customers", method=RequestMethod.GET)
+	public ResponseEntity<List<CustomerRegistrationInfo>> GetAllCutomers(){
+		List<CustomerRegistrationInfo> customerinfo=service.GetAllCustomers();
+				return ResponseEntity.status(HttpStatus.OK).body(customerinfo);		
+	}	
 	
 }
