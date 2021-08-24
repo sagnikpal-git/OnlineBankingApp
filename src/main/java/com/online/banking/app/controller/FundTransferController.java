@@ -17,37 +17,32 @@ import com.online.banking.app.model.Response;
 import com.online.banking.app.model.TransferBalanceRequest;
 import com.online.banking.app.service.FundTransferringService;
 
-
 @RestController
 public class FundTransferController {
-	
+
 	@Autowired
 	FundTransferringService service;
 
-@RequestMapping(value="/CreateBankAccountInfo",method=RequestMethod.POST)
-public ResponseEntity<BankAccountInfo> create(@RequestBody BankAccountInfo accountinfo) {
-   BankAccountInfo BAI= service.save(accountinfo);
-    return ResponseEntity.status(HttpStatus.CREATED).body(BAI);
-}
-
-@RequestMapping(value="/GetAllBankAccountDetails",method=RequestMethod.GET)
-
-public ResponseEntity<List<BankAccountInfo>> getAllAccountDetails(){
-	List<BankAccountInfo> getaccounts=service.getAllAccounts();
-	return  ResponseEntity.status(HttpStatus.OK).body(getaccounts);
+	@RequestMapping(value = "/create-account-info", method = RequestMethod.POST)
+	public ResponseEntity<BankAccountInfo> create(@RequestBody BankAccountInfo accountinfo) {
+		BankAccountInfo BAI = service.save(accountinfo);
+		return ResponseEntity.status(HttpStatus.CREATED).body(BAI);
 	}
-	
-@PutMapping("/sendmoney")
-public ResponseEntity<ResponseEntity<Response>> SendMoney(
-        @RequestBody TransferBalanceRequest transferBalanceRequest
-        ) throws UnableToTransferFundException {
 
-            ResponseEntity<Response> transfer=service.TransferBalanceRequest(
-                    transferBalanceRequest
-            );
-			return ResponseEntity.status(HttpStatus.OK).body(transfer);
-    
+	@RequestMapping(value = "/get-all-bank-details", method = RequestMethod.GET)
+
+	public ResponseEntity<List<BankAccountInfo>> getAllAccountDetails() {
+		List<BankAccountInfo> getaccounts = service.getAllAccounts();
+		return ResponseEntity.status(HttpStatus.OK).body(getaccounts);
+	}
+
+	@PutMapping("/send-money")
+	public ResponseEntity<ResponseEntity<Response>> SendMoney(
+			@RequestBody TransferBalanceRequest transferBalanceRequest) throws UnableToTransferFundException {
+
+		ResponseEntity<Response> transfer = service.TransferBalanceRequest(transferBalanceRequest);
+		return ResponseEntity.status(HttpStatus.OK).body(transfer);
+
+	}
+
 }
-
-}
-
