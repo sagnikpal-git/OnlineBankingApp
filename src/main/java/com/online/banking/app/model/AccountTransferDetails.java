@@ -18,7 +18,7 @@ import lombok.ToString;
 public class AccountTransferDetails {
 	@Id
 	@GeneratedValue( strategy = GenerationType.AUTO)
-	private Integer accountNumber;	
+	private Long accountNumber;	
 	private String AccountOwner;	
 	private String IFSCCode;	
 	private String branchName;	
