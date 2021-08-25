@@ -24,7 +24,7 @@ public class BankAccountInfo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@NotNull(message = "Please enter the Account Number")
-	private Integer accountNumber;
+	private Long accountNumber;
 
 	@NotEmpty(message = "Please enter the IFSC code")
 	private String ifsccode;
