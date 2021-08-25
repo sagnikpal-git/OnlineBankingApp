@@ -14,7 +14,5 @@ public class Response {
 
 	private Integer statusCode;
 	private String successMessage;
-	private Integer accountNumber;
-	
-	
+	private Long accountNumber;	
 }
