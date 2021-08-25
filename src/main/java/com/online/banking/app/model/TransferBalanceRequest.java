@@ -14,8 +14,7 @@ import lombok.ToString;
 
 public class TransferBalanceRequest {
 	
-private Integer FromAccountNumber;
-private Integer ToAcccountNumber;
+private Long FromAccountNumber;
+private Long ToAcccountNumber;
 private BigDecimal amount;
 }
-
