@@ -6,7 +6,7 @@ import com.online.banking.app.model.BankAccountInfo;
 
 public interface BankRepository extends JpaRepository<BankAccountInfo, Integer> {
 	
-	public BankAccountInfo findByaccountNumber(Integer accountNumber);
+	public BankAccountInfo findByaccountNumber(Long accountNumber);
 
 	public void save(Float currentSourceAmount);	
 
