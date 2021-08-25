@@ -30,8 +30,8 @@ public class FundTransferringServiceImpl implements FundTransferringService {
 
 		Response response = null;
 
-		Integer fromaccountnumber = transferBalanceRequest.getFromAccountNumber();
-		Integer toAccountnumber = transferBalanceRequest.getToAcccountNumber();
+		Long fromaccountnumber = transferBalanceRequest.getFromAccountNumber();
+		Long toAccountnumber = transferBalanceRequest.getToAcccountNumber();
 		BigDecimal amount = transferBalanceRequest.getAmount();
 		BankAccountInfo fromAccount = repo.findByaccountNumber(fromaccountnumber);
 		BankAccountInfo toAccount = repo.findByaccountNumber(toAccountnumber);
@@ -60,7 +60,4 @@ public class FundTransferringServiceImpl implements FundTransferringService {
 	public List<BankAccountInfo> getAllAccounts() {
 		return repo.findAll();
 	}
-
-	
-
 }
